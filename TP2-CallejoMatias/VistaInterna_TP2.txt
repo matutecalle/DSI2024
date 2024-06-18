@@ -1,0 +1,42 @@
+@startuml
+|Personal de Capacitate|
+start
+:Agregar/Actualizar/Eliminar Curso;
+:Gestionar Materiales de Curso;
+end
+
+|Gerente de Empresa|
+start
+:Consultar Cursos Disponibles;
+:Seleccionar y Alquilar Cursos;
+:Registrar/Actualizar/Eliminar Empleados;
+:Asignar Cursos a Empleados;
+:Establecer Fecha Límite para Cursos;
+end
+
+start
+:Solicitar Progreso de Empleados;
+if (Empleado no completa Curso/ Cuestionario) then (Sí)
+  :Enviar Recordatorio;
+else (No)
+endif
+end
+
+|Empleado de Empresa|
+start
+:Ingresar al Sistema;
+:Visualizar Cursos Asignados;
+:Realizar Curso;
+:Completar Cuestionario;
+:Enviar Cuestionario;
+end
+
+|Sistema|
+start
+if (Empleado no completa Curso/ Cuestionario) then (Sí)
+  :Enviar Recordatorio;
+else (No)
+:Marcar curso como completado;
+endif
+end
+@enduml

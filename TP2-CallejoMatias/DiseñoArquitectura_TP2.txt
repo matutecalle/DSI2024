@@ -1,0 +1,65 @@
+@startuml
+package "Cliente" {
+  actor "Personal de Capacitate" as Admin
+  actor "Gerente de Empresa" as Manager
+  actor "Empleado de Empresa" as Employee
+  rectangle "Navegador Web" as Browser
+}
+
+package "Servidor" {
+  package "Capa de Presentación" as PresentationLayer {
+    rectangle "Aplicación Web" as WebApp {
+      rectangle "Vista" as View
+      rectangle "Controlador" as Controller
+    }
+  }
+
+  package "Capa de Lógica de Negocio" as BusinessLogicLayer {
+    rectangle "Servicios" as Services {
+      usecase "Gestionar Cursos"
+      usecase "Gestionar Materiales de Curso"
+      usecase "Consultar Cursos Disponibles"
+      usecase "Seleccionar y Alquilar Cursos"
+      usecase "Registrar/Actualizar/Eliminar Empleados"
+      usecase "Asignar Cursos a Empleados"
+      usecase "Establecer Fecha Límite para Cursos"
+      usecase "Solicitar Inicio de Sesion"
+      usecase "Visualizar Cursos Asignados"
+      usecase "Iniciar Curso"
+      usecase "Completar Cuestionario"
+      usecase "Enviar Cuestionario"
+      usecase "Consultar Progreso de Empleados"
+      usecase "Definir Categorias"
+      usecase "Enviar Recordatorio"
+      usecase "Gestionar Credenciales"
+    }
+  }
+
+  package "Capa de Datos" as DataLayer {
+    package "Base de Datos Externa" as ExternalDB {
+      database "Base de Datos" as Database {
+      [Cursos]
+      [Archivos]
+      [Empresas]
+      [Usuarios]
+      [Capacitaciones]
+      [Categorias]
+      [Tematicas]
+      [Alquileres]
+      [Cuestionarios]
+      [Localidades]
+      }
+    }
+  }
+}
+
+Admin --> Browser : Utiliza
+Manager --> Browser : Utiliza
+Employee --> Browser : Utiliza
+
+Browser --> View : Envía Solicitudes
+View --> Controller : Pasa Datos
+Controller --> Services : Llama a Servicios
+Services --> Database : Accede a Datos
+
+@enduml

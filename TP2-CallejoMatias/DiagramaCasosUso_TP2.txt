@@ -1,0 +1,46 @@
+@startuml
+actor "Personal de Capacitate" as Admin
+actor "Gerente de Empresa" as Manager
+actor "Empleado de Empresa" as Employee
+
+rectangle Capacitate_Pagina_Web {
+  usecase "Gestionar Cursos" as UC1
+  usecase "Gestionar Materiales de Curso" as UC2
+  usecase "Consultar Cursos Disponibles" as UC3
+  usecase "Seleccionar y Alquilar Cursos" as UC4
+  usecase "Registrar/Actualizar/Eliminar Empleados" as UC5
+  usecase "Asignar Cursos a Empleados" as UC6
+  usecase "Establecer Fecha Límite para Cursos" as UC7
+  usecase "Solicitar inicio de sesion" as UC8
+  usecase "Visualizar Cursos Asignados" as UC9
+  usecase "Iniciar Curso" as UC10
+  usecase "Completar Cuestionario" as UC11
+  usecase "Enviar Cuestionario" as UC12
+  usecase "Consultar Progreso de Empleados" as UC13
+  usecase "Enviar Recordatorio" as UC14
+  usecase "Gestionar Credenciales" as UC15
+  usecase "Definir Categorias" as UC16
+}
+
+Admin --> UC1
+Admin --> UC2
+Admin --> UC8
+Admin --> UC16
+
+Manager --> UC3
+Manager --> UC5
+Manager --> UC6
+Manager --> UC7
+Manager --> UC13
+Manager --> UC8
+Manager --> UC15
+
+Employee --> UC8
+Employee --> UC9
+Employee --> UC10
+Employee --> UC11
+Employee --> UC12
+
+UC3 <-- UC4 : <<exclude>>
+UC13 <-- UC14 : <<exclude>>
+@enduml
